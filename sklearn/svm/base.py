@@ -1,9 +1,10 @@
 from __future__ import print_function
 
+from abc import ABCMeta, abstractmethod
+import warnings
+
 import numpy as np
 import scipy.sparse as sp
-import warnings
-from abc import ABCMeta, abstractmethod
 
 from . import libsvm, liblinear
 from . import libsvm_sparse
