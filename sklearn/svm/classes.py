@@ -1,4 +1,5 @@
 import warnings
+
 import numpy as np
 
 from .base import _fit_liblinear, BaseSVC, BaseLibSVM
