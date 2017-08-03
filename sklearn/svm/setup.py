@@ -1,12 +1,13 @@
 import os
 from os.path import join
-import numpy
+
+import numpy as np
 
 from sklearn._build_utils import get_blas_info
 
 
 def configuration(parent_package='', top_path=None):
-    from numpy.distutils.misc_util import Configuration
+    from np.distutils.misc_util import Configuration
 
     config = Configuration('svm', parent_package, top_path)
 
@@ -32,7 +33,7 @@ def configuration(parent_package='', top_path=None):
 
     config.add_extension('libsvm',
                          sources=libsvm_sources,
-                         include_dirs=[numpy.get_include(),
+                         include_dirs=[np.get_include(),
                                        join('src', 'libsvm')],
                          libraries=['libsvm-skl'],
                          depends=libsvm_depends,
@@ -53,7 +54,7 @@ def configuration(parent_package='', top_path=None):
                          sources=liblinear_sources,
                          libraries=cblas_libs,
                          include_dirs=[join('..', 'src', 'cblas'),
-                                       numpy.get_include(),
+                                       np.get_include(),
                                        blas_info.pop('include_dirs', [])],
                          extra_compile_args=blas_info.pop('extra_compile_args',
                                                           []),
@@ -67,7 +68,7 @@ def configuration(parent_package='', top_path=None):
     libsvm_sparse_sources = ['libsvm_sparse.pyx']
     config.add_extension('libsvm_sparse', libraries=['libsvm-skl'],
                          sources=libsvm_sparse_sources,
-                         include_dirs=[numpy.get_include(),
+                         include_dirs=[np.get_include(),
                                        join("src", "libsvm")],
                          depends=[join("src", "libsvm", "svm.h"),
                                   join("src", "libsvm",
@@ -77,5 +78,5 @@ def configuration(parent_package='', top_path=None):
 
 
 if __name__ == '__main__':
-    from numpy.distutils.core import setup
+    from np.distutils.core import setup
     setup(**configuration(top_path='').todict())
